@@ -2,19 +2,22 @@ package name;
 
 import java.util.ArrayList;
 
-public class ChuciLoader extends ScriptureLoader {
-	//read from the chuci.txt
+public class ShijiLoader extends ScriptureLoader {
+	
+
 	@Override
 	public ArrayList<Phase> load(String path) {
 		ArrayList<String> lines = Util.read_file(path);
-		int line_count = 0;
-		for(String line:lines) {
-			line_count++;
-			line = Util.keep_chinese(line);
-			if(line.length()==0) {
+		String cur_from = "";
+		for(int line_count=0;line_count<lines.size();line_count++){
+			String line = lines.get(line_count);
+		
+			//title
+			if(line.length()>1 && !line.startsWith(" ") && !line.startsWith("\t")) {
+				cur_from = "史记："+line;
+				former = "无";
 				continue;
 			}
-
 			String ph[] = Util.split(line, separator);
 			for(String p:ph) {
 				if(!former.equals("无")&&phases.size()>0) {
@@ -24,12 +27,13 @@ public class ChuciLoader extends ScriptureLoader {
 				Phase phase = new Phase();
 				phase.former = former;
 				phase.sentense = p;
-				phase.from = "楚辞";
+				phase.from = cur_from;
 				phase.line = line_count;
 				phases.add(phase);
 				former = p;
 			}
 		}
-		return this.phases;
+		return phases;
 	}
+	
 }

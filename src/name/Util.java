@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class Util {
+	public static String teng = "ºêÍ¼Ôó»ÁÊé½úÒæ";
 	public static boolean is_chinese(char ch) {
 		return ch>=19968&&ch<40869;
 	}
@@ -55,5 +57,18 @@ public class Util {
 			}
 		}
 		return ret;
+	}
+	
+	public static String[] split(String line, String delimiters) {
+		StringTokenizer multiTokenizer = new StringTokenizer(line, delimiters);
+		ArrayList<String> rets = new ArrayList<String>();
+		while (multiTokenizer.hasMoreTokens()){
+			rets.add(multiTokenizer.nextToken());
+		}
+		String ret_string[] = new String[rets.size()];
+		for(int i=0;i<rets.size();i++) {
+			ret_string[i] = rets.get(i);
+		}
+		return ret_string;
 	}
 }

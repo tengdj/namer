@@ -8,7 +8,7 @@ public class SishuwujingLoader extends ScriptureLoader {
 	public enum book{
 		DAXUE,MENGZI,LUNYU,ZHONGYONG,
 		CHUNQIU,LIJI,ZHOUYI,SHANGSHU,SHIJING
-	};
+	}
 	String judge_sishuwujing(int line_num) {
 		assert line_num>0;
 		for(int i=8;i>=0;i--) {
@@ -20,7 +20,6 @@ public class SishuwujingLoader extends ScriptureLoader {
 	}
 	@Override
 	public ArrayList<Phase> load(String path) {
-		former = "ÎÞ";
 		boolean in_yuanwen = false;
 		ArrayList<String> lines = Util.read_file(path);
 		int line_count = 0;
@@ -40,7 +39,7 @@ public class SishuwujingLoader extends ScriptureLoader {
 				}
 			}
 			if(in_yuanwen) {
-				String ph[] = line.split("[£»£¿¡££¡]");
+				String ph[] = Util.split(line, separator);
 				for(String p:ph) {
 					if(!former.equals("ÎÞ")&&phases.size()>0) {
 						//former's latter one is this one
