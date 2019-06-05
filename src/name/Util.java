@@ -9,21 +9,24 @@ import java.util.StringTokenizer;
 
 public class Util {
 	public static String teng = "ºêÍ¼Ôó»ÁÊé½úÒæ";
+	public static String symbol = "£¿£»¡££¡£¬?¡¢¡®¡¯¡°¡±£º©p¡¾¡¿{}£¨£©¡·¡¶££*¡ö;#&";
 	public static boolean is_chinese(char ch) {
 		return ch>=19968&&ch<40869;
 	}
-	public static boolean is_chinese_delimiter(char ch) {
-		return ch=='£»'||ch=='£¿'||ch=='¡£'||ch=='£¡';
-	}
 	public static boolean is_chinese_symbol(char ch) {
-		return ch=='£¬'||ch=='£º'||ch=='£»'||ch=='£¿'||ch=='¡£'||ch=='¡¾'||ch=='¡¿'||ch=='£¡';
+		for(char c:symbol.toCharArray()) {
+			if(c==ch) {
+				return true;
+			}
+		}
+		return false;
+		//return ch=='£¬'||ch=='£º'||ch=='£»'||ch=='£¿'||ch=='¡£'||ch=='¡¾'||ch=='¡¿'||ch=='£¡';
 	}
 	public static String keep_chinese(String s) {
 		String ret = "";
-		for(int i=0;i<s.length();i++) {
-			char ch = s.charAt(i);
+		for(char ch:s.toCharArray()) {
 			if(is_chinese_symbol(ch)||is_chinese(ch)) {
-				ret += s.charAt(i);
+				ret += ch;
 			}
 		}
 		return ret;

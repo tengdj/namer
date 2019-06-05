@@ -11,13 +11,18 @@ public class ShijiLoader extends ScriptureLoader {
 		String cur_from = "";
 		for(int line_count=0;line_count<lines.size();line_count++){
 			String line = lines.get(line_count);
-		
-			//title
+			// title line
 			if(line.length()>1 && !line.startsWith(" ") && !line.startsWith("\t")) {
 				cur_from = "史记："+line;
 				former = "无";
 				continue;
 			}
+			
+			line = Util.keep_chinese(line);
+			if(line.length()==0) {
+				continue;
+			}
+			
 			String ph[] = Util.split(line, separator);
 			for(String p:ph) {
 				if(!former.equals("无")&&phases.size()>0) {

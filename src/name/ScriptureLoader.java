@@ -3,7 +3,7 @@ package name;
 import java.util.ArrayList;
 
 public abstract class ScriptureLoader {
-	protected String separator =  "£»£¿¡££¡£¬?¡¢¡®¡¯¡°¡±£º";
+	protected String separator =  Util.symbol;
 	ArrayList<Phase> phases = new ArrayList<Phase>();
 	protected String former = "ÎÞ";
 	public abstract ArrayList<Phase> load(String path) ;
