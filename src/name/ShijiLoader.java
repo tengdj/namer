@@ -12,12 +12,11 @@ public class ShijiLoader extends ScriptureLoader {
 		for(int line_count=0;line_count<lines.size();line_count++){
 			String line = lines.get(line_count);
 			// title line
-			if(line.length()>1 && !line.startsWith(" ") && !line.startsWith("\t")) {
+			if(line.length()>1 && !line.startsWith("\t")&& !line.startsWith(" ")) {
 				cur_from = "Ê·¼Ç£º"+line;
 				former = "ÎÞ";
 				continue;
 			}
-			
 			line = Util.keep_chinese(line);
 			if(line.length()==0) {
 				continue;
