@@ -13,12 +13,12 @@ public class Namer {
 		phases.addAll(ccloader.load("reference/chuci.txt"));
 //		ShijiLoader sjloader = new ShijiLoader();
 //		phases.addAll(sjloader.load("reference/shiji.txt"));
-//		Query q = new Query();
-//		q.query(Util.teng, phases);
+		Query q = new Query();
+		q.query(Util.teng, phases);
 //		n.setOutput("out.txt");
-
-		Query q = new Query('‘Û', "…œ…–⁄Ø‘ª");
-		q.query(phases);		
+//
+//		Query q = new Query(' È', "…œ…–⁄Ø‘ª");
+//		q.query(phases);		
 		
 	}
 	
