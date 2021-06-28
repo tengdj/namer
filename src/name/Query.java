@@ -8,9 +8,9 @@ import java.util.HashSet;
 
 public class Query {
 	PrintStream out = System.out;
-	public char target = ' ';
+	public String target = "";
 	public HashSet<Character> avoids = new HashSet<Character>();
-	public Query(char ch, String avoid_string) {
+	public Query(String ch, String avoid_string) {
 		target = ch;
 		for(char avs:avoid_string.toCharArray()){
 			avoids.add(avs);
@@ -20,19 +20,20 @@ public class Query {
 	}
 	
 	public boolean match(String sentense) {
-		int len = sentense.length();
-		for(int j=0;j<len;j++) {
-			char cur = sentense.charAt(j);
-			if(cur!=target) {
-				continue;
+		
+		for(char ch:target.toCharArray()) {
+			boolean found = false;
+			for(char cur:sentense.toCharArray()) {
+				if(ch==cur) {
+					found = true;
+					break;
+				}
 			}
-			// this sentence matches the target
-			if((j==0||!avoids.contains(sentense.charAt(j-1)))&&
-					((j==len-1)||!avoids.contains(sentense.charAt(j+1)))) {
-				return true;
+			if(!found) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public String formalize(Phase phase) {
@@ -40,10 +41,18 @@ public class Query {
 		int len = phase.sentense.length();
 		for(int j=0;j<len;j++) {
 			char cur = phase.sentense.charAt(j);
-			if(cur!=target) {
+			boolean m = false;
+			for(char ch:target.toCharArray()) {
+				if(ch==cur) {
+					m = true;
+					break;
+				}
+			}
+			if(!m) {
 				p += cur;
 				continue;
 			}
+
 			if((j==0||!avoids.contains(phase.sentense.charAt(j-1)))&&
 					((j==len-1)||!avoids.contains(phase.sentense.charAt(j+1)))) {
 				p += "["+cur+"]";
@@ -78,9 +87,7 @@ public class Query {
 	
 	public void query(String q, ArrayList<Phase> phases) {
 		q = Util.keep_chinese(q);
-		for(char ch:q.toCharArray()) {
-			this.target = ch;
-			query(phases);
-		}
+		this.target = q;
+		query(phases);
 	}
 }

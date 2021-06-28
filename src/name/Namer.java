@@ -20,8 +20,8 @@ public class Namer {
 		GlobalLoader scloader = new GlobalLoader("全宋词");
 		phases.addAll(scloader.load("reference/songci.txt"));
 		Query q = new Query();
-		q.setOutput("C:\\Users\\admin\\Desktop\\name.txt");
-		q.query("清卿", phases);
+		//q.setOutput("C:\\Users\\admin\\Desktop\\name.txt");
+		q.query("国生", phases);
 
 //
 //		Query q = new Query('书', "上尚诏曰");
