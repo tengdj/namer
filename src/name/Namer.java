@@ -15,15 +15,22 @@ public class Namer {
 //		phases.addAll(sjloader.load("reference/shiji.txt"));
 //		GlobalLoader zjtjloader = new GlobalLoader("资治通鉴");
 //		phases.addAll(zjtjloader.load("reference/zizhitongjian.txt"));
-		GlobalLoader tsloader = new GlobalLoader("全唐诗");
-		phases.addAll(tsloader.load("reference/tangshi.txt"));
-		GlobalLoader scloader = new GlobalLoader("全宋词");
-		phases.addAll(scloader.load("reference/songci.txt"));
+//		GlobalLoader tsloader = new GlobalLoader("全唐诗");
+//		phases.addAll(tsloader.load("reference/tangshi.txt"));
+//		GlobalLoader scloader = new GlobalLoader("全宋词");
+//		phases.addAll(scloader.load("reference/songci.txt"));
 		Query q = new Query();
+		//q.turntowuxing();
 		//q.setOutput("C:\\Users\\admin\\Desktop\\name.txt");
-		q.query("国生", phases);
+		//q.sethuo();
+		//q.setShui();
+		//q.setJin();
+		q.setTu();
+		//q.setMu();
+		//q.addTarget("婉清");
+		q.addTarget("清");
+		q.query(phases);
 
-//
 //		Query q = new Query('书', "上尚诏曰");
 //		q.query(phases);		
 	}
